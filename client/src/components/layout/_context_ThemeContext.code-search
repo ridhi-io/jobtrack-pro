@@ -1,0 +1,9 @@
+# Query: ../context/ThemeContext
+# ContextLines: 1
+
+1 result - 1 file
+
+client\src\components\layout\Navbar.jsx:
+  8  import { useNavigate } from "react-router-dom";
+  9: import { useTheme } from "../../context/ThemeContext";
+  10  function Navbar() {
