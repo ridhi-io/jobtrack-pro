@@ -1,107 +1,153 @@
 import { Link, useLocation } from "react-router-dom";
 import {
-  FaHome,
-  FaPlusCircle,
-  FaChartPie,
-  FaBriefcase,
-} from "react-icons/fa";
+  LayoutDashboard,
+  BriefcaseBusiness,
+  PlusCircle,
+  CalendarDays,
+  Settings,
+  ChevronRight,
+} from "lucide-react";
+import { motion } from "framer-motion";
 
-function Sidebar() {
+export default function Sidebar() {
   const location = useLocation();
 
   const menuItems = [
     {
-      name: "Dashboard",
+      title: "Dashboard",
       path: "/dashboard",
-      icon: <FaHome />,
+      icon: LayoutDashboard,
     },
     {
-      name: "Add Job",
+      title: "Applications",
+      path: "/dashboard",
+      icon: BriefcaseBusiness,
+    },
+    {
+      title: "Add Job",
       path: "/add-job",
-      icon: <FaPlusCircle />,
+      icon: PlusCircle,
+    },
+    {
+      title: "Calendar",
+      path: "/calendar",
+      icon: CalendarDays,
+    },
+    {
+      title: "Settings",
+      path: "/settings",
+      icon: Settings,
     },
   ];
 
   return (
-    <aside className="w-72 min-h-screen bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-700 shadow-lg flex flex-col transition-colors duration-300">
-      
-      {/* Logo */}
-      <div className="px-8 py-8 border-b border-gray-200 dark:border-gray-700">
-        <div className="flex items-center gap-4">
-          <div className="bg-blue-600 p-4 rounded-2xl shadow-lg">
-            <FaBriefcase className="text-white text-2xl" />
+    <aside className="w-[290px] min-h-screen bg-white dark:bg-[#111218] border-r border-gray-200 dark:border-white/5 flex flex-col justify-between p-6 transition-colors duration-300">
+      <div>
+        {/* Logo */}
+
+        <div className="flex items-center gap-4 mb-12">
+          <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-violet-500 to-purple-700 flex items-center justify-center shadow-xl">
+            <BriefcaseBusiness className="text-white w-7 h-7" />
           </div>
 
           <div>
-            <h1 className="text-2xl font-bold text-gray-800 dark:text-white">
-              JobTrack Pro
+            <h1 className="text-gray-900 dark:text-white text-2xl font-bold">
+              JobTrack
             </h1>
 
-            <p className="text-sm text-gray-500 dark:text-gray-400">
-              Internship Tracker
+            <p className="text-gray-500 dark:text-gray-400 text-sm">
+              Internship OS
             </p>
           </div>
         </div>
-      </div>
 
-      {/* Navigation */}
-      <nav className="flex-1 px-6 py-8">
-        <p className="text-xs font-semibold uppercase tracking-widest text-gray-400 dark:text-gray-500 mb-5">
-          Main Menu
-        </p>
+        {/* Navigation */}
 
         <div className="space-y-3">
           {menuItems.map((item) => {
+            const ActiveIcon = item.icon;
             const active = location.pathname === item.path;
 
             return (
-              <Link
-                key={item.name}
-                to={item.path}
-                className={`flex items-center gap-4 px-5 py-4 rounded-2xl transition-all duration-300 ${
-                  active
-                    ? "bg-blue-600 text-white shadow-lg"
-                    : "text-gray-700 dark:text-gray-300 hover:bg-blue-50 dark:hover:bg-gray-800 hover:text-blue-600 dark:hover:text-blue-400"
-                }`}
-              >
-                <span className="text-xl">{item.icon}</span>
+              <Link key={item.title} to={item.path}>
+                <motion.div
+                  whileHover={{ x: 5, scale: 1.02 }}
+                  whileTap={{ scale: 0.97 }}
+                  className={`group flex items-center justify-between rounded-2xl px-5 py-4 transition-all duration-300 ${
+                    active
+                      ? "bg-gradient-to-r from-violet-600 to-purple-600 shadow-lg"
+                      : "hover:bg-gray-100 dark:hover:bg-[#1A1B23]"
+                  }`}
+                >
+                  <div className="flex items-center gap-4">
+                    <ActiveIcon
+                      className={`w-5 h-5 ${
+                        active
+                          ? "text-white"
+                          : "text-gray-500 dark:text-gray-400 group-hover:text-violet-500"
+                      }`}
+                    />
 
-                <span className="font-semibold">
-                  {item.name}
-                </span>
+                    <span
+                      className={`font-medium ${
+                        active
+                          ? "text-white"
+                          : "text-gray-700 dark:text-gray-300"
+                      }`}
+                    >
+                      {item.title}
+                    </span>
+                  </div>
+
+                  <ChevronRight
+                    className={`w-4 h-4 ${
+                      active
+                        ? "text-white"
+                        : "text-gray-400 dark:text-gray-500"
+                    }`}
+                  />
+                </motion.div>
               </Link>
             );
           })}
         </div>
 
-        {/* Analytics Preview */}
-        <div className="mt-12 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl p-6 text-white shadow-xl">
-          <FaChartPie className="text-3xl mb-4" />
+        {/* Weekly Goal */}
 
-          <h3 className="text-lg font-bold">
-            Analytics
-          </h3>
-
-          <p className="text-sm text-blue-100 mt-2">
-            Charts and detailed insights are coming soon.
-          </p>
-        </div>
-      </nav>
-
-      {/* Footer */}
-      <div className="p-6 border-t border-gray-200 dark:border-gray-700">
-        <div className="bg-gray-100 dark:bg-gray-800 rounded-2xl p-4 transition-colors">
-          <p className="font-semibold text-gray-700 dark:text-white">
-            🚀 Keep Applying
+        <div className="mt-10 rounded-3xl border border-gray-200 dark:border-none bg-white dark:bg-gradient-to-br dark:from-violet-600 dark:to-indigo-700 shadow-sm dark:shadow-lg p-6 transition-colors duration-300">
+          <p className="font-semibold text-gray-900 dark:text-white">
+            Weekly Goal
           </p>
 
-          <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
-            Every application gets you one step closer to your dream job.
+          <h2 className="text-4xl font-bold mt-3 text-violet-600 dark:text-white">
+            3/5
+          </h2>
+
+          <p className="text-gray-500 dark:text-violet-100 text-sm mt-2">
+            Applications submitted this week.
           </p>
+
+          <div className="mt-6 w-full h-3 rounded-full bg-gray-200 dark:bg-white/20">
+            <div className="w-3/5 h-full rounded-full bg-violet-600 dark:bg-white"></div>
+          </div>
         </div>
       </div>
+
+      {/* Bottom Card */}
+
+      <motion.div
+        whileHover={{ scale: 1.02 }}
+        className="rounded-3xl bg-white dark:bg-[#181922] border border-gray-200 dark:border-white/5 shadow-sm dark:shadow-none p-5 transition-colors duration-300"
+      >
+        <p className="text-gray-900 dark:text-white font-semibold">
+          🚀 Stay Consistent
+        </p>
+
+        <p className="text-gray-500 dark:text-gray-400 text-sm mt-2 leading-6">
+          Every internship application increases your chances.
+          Small progress every day compounds into big results.
+        </p>
+      </motion.div>
     </aside>
   );
 }
-
-export default Sidebar;

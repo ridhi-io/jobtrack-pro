@@ -1,0 +1,9 @@
+# Query: from-white to-gray-50
+# ContextLines: 1
+
+1 result - 1 file
+
+client\src\components\dashboard\DashboardHeader.jsx:
+  20        transition={{ duration: 0.45 }}
+  21:       className="rounded-3xl border border-gray-200 dark:border-white/5 bg-gradient-to-br from-white to-[#F8FAFC] dark:from-[#171821] dark:to-[#111218] p-8 transition-colors duration-300"
+  22      >

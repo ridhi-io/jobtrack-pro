@@ -1,12 +1,229 @@
 @import "tailwindcss";
 
-/* Enable class-based dark mode */
+/* Dark mode */
 @custom-variant dark (&:where(.dark, .dark *));
 
+/* ------------------ */
+/* Theme Tokens       */
+/* ------------------ */
+
+@theme {
+
+  --font-sans: "Outfit", sans-serif;
+
+  /* Light Theme */
+
+  --color-background: #F8FAFC;
+  --color-surface: #FFFFFF;
+  --color-card: #FFFFFF;
+  --color-card-hover: #F3F4F6;
+
+  --color-primary: #8B5CF6;
+  --color-primary-light: #A855F7;
+
+  --color-blue: #4F7CFF;
+  --color-green: #22C55E;
+  --color-orange: #F59E0B;
+  --color-red: #EF4444;
+
+  --color-text: #111827;
+  --color-muted: #6B7280;
+}
+
+/* Dark Theme */
+
+.dark {
+
+  --color-background: #09090B;
+  --color-surface: #111218;
+  --color-card: #171821;
+  --color-card-hover: #1D1F2A;
+
+  --color-text: #FFFFFF;
+  --color-muted: #9CA3AF;
+}
+
+/* ------------------ */
+/* Global             */
+/* ------------------ */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
+
   margin: 0;
-  min-width: 320px;
+
   min-height: 100vh;
-  font-family: Inter, system-ui, sans-serif;
-  background-color: #f8fafc;
+
+  font-family: "Outfit", sans-serif;
+
+  color: var(--color-text);
+
+  background: var(--color-background);
+
+  transition:
+    background .3s ease,
+    color .3s ease;
+}
+
+/* Scrollbar */
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-background);
+}
+
+::-webkit-scrollbar-thumb {
+
+  background: #9CA3AF;
+
+  border-radius: 20px;
+
+}
+
+.dark ::-webkit-scrollbar-thumb {
+
+  background: #343746;
+
+}
+
+::-webkit-scrollbar-thumb:hover {
+
+  background: #8B5CF6;
+
+}
+
+/* ------------------ */
+/* Reusable Classes   */
+/* ------------------ */
+
+.glass {
+
+  background: color-mix(in srgb, var(--color-card) 85%, transparent);
+
+  backdrop-filter: blur(18px);
+
+  border: 1px solid rgba(128, 128, 128, .15);
+
+}
+
+.card {
+
+  background: var(--color-card);
+
+  color: var(--color-text);
+
+  border: 1px solid rgba(128, 128, 128, .15);
+
+  border-radius: 24px;
+
+  transition: .35s;
+
+  box-shadow: 0 15px 50px rgba(0,0,0,.12);
+
+}
+
+.dark .card {
+
+  box-shadow: 0 15px 50px rgba(0,0,0,.35);
+
+}
+
+.card:hover {
+
+  transform: translateY(-6px);
+
+  background: var(--color-card-hover);
+
+}
+
+.gradient-button {
+
+  background:
+    linear-gradient(
+      135deg,
+      #8B5CF6,
+      #A855F7
+    );
+
+  color: white;
+
+  transition: .3s;
+
+}
+
+.gradient-button:hover {
+
+  transform: scale(1.03);
+
+  box-shadow:
+    0 10px 40px rgba(139,92,246,.35);
+
+}
+
+.input-modern {
+
+  background: var(--color-card);
+
+  color: var(--color-text);
+
+  border: 1px solid rgba(128,128,128,.20);
+
+  transition: .25s;
+
+}
+
+.input-modern::placeholder {
+
+  color: var(--color-muted);
+
+}
+
+.input-modern:focus {
+
+  outline: none;
+
+  border-color: #8B5CF6;
+
+  box-shadow:
+    0 0 0 3px rgba(139,92,246,.18);
+
+}
+
+.title-gradient {
+
+  background:
+    linear-gradient(
+      90deg,
+      #8B5CF6,
+      #A855F7
+    );
+
+  background-clip: text;
+
+  -webkit-background-clip: text;
+
+  color: transparent;
+
+  -webkit-text-fill-color: transparent;
+
+}
+
+.stat-number {
+
+  font-size: 2rem;
+
+  font-weight: 700;
+
+  color: var(--color-text);
+
 }
