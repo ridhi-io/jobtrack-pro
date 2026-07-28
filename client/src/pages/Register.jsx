@@ -99,7 +99,7 @@ function Register() {
             JobTrack Pro
           </h1>
 
-          <p className="text-gray-500 dark:text-gray-400 mt-2 text-center">
+          <p className="text-gray-500 dark:text-gray-500 dark:text-gray-400 mt-2 text-center">
             Create your account 🚀
           </p>
 
@@ -122,7 +122,7 @@ function Register() {
             placeholder="Full Name"
             value={formData.name}
             onChange={handleChange}
-            className="w-full p-3 rounded-xl border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-800 dark:text-white placeholder:text-gray-400 dark:placeholder:text-gray-500 focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all duration-300"
+            className="w-full p-3 rounded-xl border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-800 dark:text-white placeholder:text-gray-500 dark:text-gray-400 dark:placeholder:text-gray-500 focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all duration-300"
           />
 
           <input
@@ -131,7 +131,7 @@ function Register() {
             placeholder="Email Address"
             value={formData.email}
             onChange={handleChange}
-            className="w-full p-3 rounded-xl border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-800 dark:text-white placeholder:text-gray-400 dark:placeholder:text-gray-500 focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all duration-300"
+            className="w-full p-3 rounded-xl border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-800 dark:text-white placeholder:text-gray-500 dark:text-gray-400 dark:placeholder:text-gray-500 focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all duration-300"
           />
 
           <div className="relative">
@@ -146,7 +146,7 @@ function Register() {
               placeholder="Password"
               value={formData.password}
               onChange={handleChange}
-              className="w-full p-3 pr-12 rounded-xl border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-800 dark:text-white placeholder:text-gray-400 dark:placeholder:text-gray-500 focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all duration-300"
+              className="w-full p-3 pr-12 rounded-xl border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-800 dark:text-white placeholder:text-gray-500 dark:text-gray-400 dark:placeholder:text-gray-500 focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all duration-300"
             />
 
             <button
@@ -156,7 +156,7 @@ function Register() {
                   !showPassword
                 )
               }
-              className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 dark:text-gray-400"
+              className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 dark:text-gray-500 dark:text-gray-400"
             >
               {showPassword ? (
                 <FaEyeSlash />
@@ -179,7 +179,7 @@ function Register() {
               placeholder="Confirm Password"
               value={formData.confirmPassword}
               onChange={handleChange}
-              className="w-full p-3 pr-12 rounded-xl border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-800 dark:text-white placeholder:text-gray-400 dark:placeholder:text-gray-500 focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all duration-300"
+              className="w-full p-3 pr-12 rounded-xl border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-800 dark:text-white placeholder:text-gray-500 dark:text-gray-400 dark:placeholder:text-gray-500 focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all duration-300"
             />
 
             <button
@@ -189,7 +189,7 @@ function Register() {
                   !showConfirmPassword
                 )
               }
-              className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 dark:text-gray-400"
+              className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 dark:text-gray-500 dark:text-gray-400"
             >
               {showConfirmPassword ? (
                 <FaEyeSlash />
@@ -214,7 +214,7 @@ function Register() {
 
         <div className="mt-8 text-center">
 
-          <p className="text-gray-600 dark:text-gray-400">
+          <p className="text-gray-600 dark:text-gray-500 dark:text-gray-400">
             Already have an account?
           </p>
 

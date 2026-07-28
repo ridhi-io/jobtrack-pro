@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { Toaster } from "react-hot-toast";
 import "react-calendar/dist/Calendar.css";
+import "@fontsource/outfit";
 
 import App from "./App";
 import "./index.css";

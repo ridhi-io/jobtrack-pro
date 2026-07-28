@@ -1,0 +1,24 @@
+# Query: bg-[#09090B]
+# ContextLines: 1
+
+4 results - 4 files
+
+client\src\components\layout\Navbar.jsx:
+  43    return (
+  44:     <header className="flex items-center justify-between px-8 py-6 border-b border-gray-200 dark:border-white/5 bg-white dark:bg-[#09090B] transition-colors duration-300">
+  45  
+
+client\src\pages\AddJob.jsx:
+  113        transition={{ duration: 0.35 }}
+  114:       className="min-h-screen bg-[#09090B] px-6 py-10"
+  115      >
+
+client\src\pages\Dashboard.jsx:
+  102    return (
+  103:     <div className="min-h-screen bg-[#09090B] text-white">
+  104        <Navbar />
+
+client\src\pages\Login.jsx:
+  70    return (
+  71:     <div className="min-h-screen bg-[#09090B] flex">
+  72        {/* Left Side */}

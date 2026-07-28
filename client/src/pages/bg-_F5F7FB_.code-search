@@ -1,0 +1,9 @@
+# Query: bg-[#F5F7FB]
+# ContextLines: 1
+
+1 result - 1 file
+
+client\src\pages\Dashboard.jsx:
+  102    return (
+  103:     <div className="min-h-screen bg-[#EEF2F7] dark:bg-[#09090B] text-gray-900 dark:text-white transition-colors duration-300">
+  104        <Navbar />

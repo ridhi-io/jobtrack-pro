@@ -1,92 +1,107 @@
+import { motion } from "framer-motion";
+import Card from "../../ui/Card";
 import {
-  Briefcase,
+  BriefcaseBusiness,
   CalendarClock,
   Trophy,
   XCircle,
+  TrendingUp,
 } from "lucide-react";
 
-function StatsCard({ title, value, color }) {
+export default function StatsCard({ title, value, color }) {
   const styles = {
     blue: {
-      bg: "bg-blue-50 dark:bg-blue-950/40",
-      iconBg: "bg-blue-500",
-      text: "text-blue-600 dark:text-blue-400",
-      icon: <Briefcase size={24} />,
+      gradient: "from-blue-500 to-cyan-500",
+      icon: BriefcaseBusiness,
+      text: "text-blue-400",
+      trend: "+12%",
     },
 
     yellow: {
-      bg: "bg-yellow-50 dark:bg-yellow-950/40",
-      iconBg: "bg-yellow-500",
-      text: "text-yellow-600 dark:text-yellow-400",
-      icon: <CalendarClock size={24} />,
+      gradient: "from-yellow-500 to-orange-500",
+      icon: CalendarClock,
+      text: "text-yellow-400",
+      trend: "+8%",
     },
 
     green: {
-      bg: "bg-green-50 dark:bg-green-950/40",
-      iconBg: "bg-green-500",
-      text: "text-green-600 dark:text-green-400",
-      icon: <Trophy size={24} />,
+      gradient: "from-green-500 to-emerald-500",
+      icon: Trophy,
+      text: "text-green-400",
+      trend: "+18%",
     },
 
     red: {
-      bg: "bg-red-50 dark:bg-red-950/40",
-      iconBg: "bg-red-500",
-      text: "text-red-600 dark:text-red-400",
-      icon: <XCircle size={24} />,
+      gradient: "from-red-500 to-pink-500",
+      icon: XCircle,
+      text: "text-red-400",
+      trend: "-4%",
     },
   };
 
-  const currentStyle = styles[color] || styles.blue;
+  const current = styles[color] || styles.blue;
+  const Icon = current.icon;
 
   return (
-    <div
-      className={`
-        ${currentStyle.bg}
-        rounded-2xl
-        p-6
-        shadow-md
-        hover:shadow-2xl
-        hover:-translate-y-1
-        transition-all
-        duration-300
-        border
-        border-gray-100
-        dark:border-gray-700
-      `}
+    <motion.div
+      initial={{ opacity: 0, y: 15 }}
+      animate={{ opacity: 1, y: 0 }}
+      whileHover={{
+        y: -6,
+      }}
+      transition={{
+        duration: 0.25,
+      }}
     >
-      <div className="flex justify-between items-center">
-        <div>
-          <p className="text-gray-500 dark:text-gray-400 text-sm font-medium">
-            {title}
-          </p>
+      <Card className="relative overflow-hidden">
 
-          <h2 className={`text-4xl font-bold mt-3 ${currentStyle.text}`}>
-            {value}
-          </h2>
-
-          <p className="text-gray-400 dark:text-gray-500 text-sm mt-2">
-            Live Count
-          </p>
-        </div>
+        {/* Glow */}
 
         <div
-          className={`
-            ${currentStyle.iconBg}
-            w-14
-            h-14
-            rounded-xl
-            flex
-            items-center
-            justify-center
-            text-white
-            shadow-lg
-          `}
-        >
-          {currentStyle.icon}
+          className={`absolute -right-10 -top-10 h-32 w-32 rounded-full bg-gradient-to-br ${current.gradient} opacity-10 blur-3xl`}
+        />
+
+        <div className="flex items-start justify-between">
+
+          <div>
+
+            <p className="text-sm text-gray-500 dark:text-gray-400">
+              {title}
+            </p>
+
+            <h2 className="mt-3 text-5xl font-bold text-white">
+              {value}
+            </h2>
+
+            <div className="mt-5 flex items-center gap-2">
+
+              <TrendingUp
+                className={`h-4 w-4 ${current.text}`}
+              />
+
+              <span
+                className={`text-sm font-semibold ${current.text}`}
+              >
+                {current.trend}
+              </span>
+
+              <span className="text-sm text-gray-500">
+                this week
+              </span>
+
+            </div>
+
+          </div>
+
+          <div
+            className={`flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br ${current.gradient} shadow-xl`}
+          >
+            <Icon className="h-8 w-8 text-white" />
+          </div>
+
         </div>
-      </div>
-    </div>
+
+      </Card>
+    </motion.div>
   );
 }
-
-export default StatsCard;

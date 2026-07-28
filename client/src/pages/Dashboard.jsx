@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import DashboardHeader from "../components/dashboard/DashboardHeader";
+import { useEffect, useMemo, useState } from "react";
 import toast from "react-hot-toast";
 
 import Navbar from "../components/layout/Navbar";
@@ -16,7 +17,10 @@ import ApplicationsBarChart from "../components/charts/ApplicationsBarChart";
 import API from "../services/api";
 
 function Dashboard() {
-  const user = JSON.parse(localStorage.getItem("user"));
+  const [user] = useState(() => {
+  const storedUser = localStorage.getItem("user");
+  return storedUser ? JSON.parse(storedUser) : null;
+});
 
   const [applications, setApplications] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -83,20 +87,20 @@ function Dashboard() {
     (app) => app.status === "Rejected"
   ).length;
 
-  const filteredApplications = applications.filter((app) => {
+  const filteredApplications = useMemo(() => {
+  return applications.filter((app) => {
     const matchesSearch =
       app.company.toLowerCase().includes(searchTerm.toLowerCase()) ||
       app.role.toLowerCase().includes(searchTerm.toLowerCase());
 
     const matchesStatus =
-      statusFilter === "All" ||
-      app.status === statusFilter;
+      statusFilter === "All" || app.status === statusFilter;
 
     return matchesSearch && matchesStatus;
   });
-
+}, [applications, searchTerm, statusFilter]);
   return (
-    <div className="min-h-screen bg-gray-100 dark:bg-gray-950 transition-colors duration-300">
+    <div className="min-h-screen bg-[#F5F7FB] dark:bg-[#09090B] text-gray-900 dark:text-white transition-colors duration-300">
       <Navbar />
 
       <div className="flex">
@@ -104,16 +108,7 @@ function Dashboard() {
 
         <main className="flex-1 p-8 overflow-auto">
           {/* Heading */}
-          <div className="mb-8">
-            <h1 className="text-3xl font-bold text-gray-800 dark:text-white">
-              Welcome back, {user?.name} 👋
-            </h1>
-
-            <p className="text-gray-500 dark:text-gray-400 mt-2">
-              Track your internship journey from one place.
-            </p>
-          </div>
-
+          <DashboardHeader user={user} />
           {/* Stats Cards */}
           <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 mb-8">
             <StatsCard
@@ -143,7 +138,7 @@ function Dashboard() {
 
           {loading ? (
             <div className="flex justify-center items-center h-96">
-              <div className="text-lg font-semibold text-gray-500 dark:text-gray-300">
+              <div className="text-lg font-semibold text-gray-500 dark:text-gray-700 dark:text-gray-300">
                 Loading dashboard...
               </div>
             </div>
