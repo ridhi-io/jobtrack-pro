@@ -1,14 +1,32 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
+
+import { useLocation } from "react-router-dom";
 
 const ThemeContext = createContext();
 
 export function ThemeProvider({ children }) {
+  const location = useLocation();
+
   const [darkMode, setDarkMode] = useState(() => {
     const saved = localStorage.getItem("theme");
-    return saved ? saved === "dark" : true; // default = dark
+    return saved ? saved === "dark" : true;
   });
 
   useEffect(() => {
+    const authPage =
+      location.pathname === "/login" ||
+      location.pathname === "/register";
+
+    if (authPage) {
+      document.documentElement.classList.add("dark");
+      return;
+    }
+
     if (darkMode) {
       document.documentElement.classList.add("dark");
       localStorage.setItem("theme", "dark");
@@ -16,14 +34,16 @@ export function ThemeProvider({ children }) {
       document.documentElement.classList.remove("dark");
       localStorage.setItem("theme", "light");
     }
-  }, [darkMode]);
+  }, [darkMode, location.pathname]);
 
   const toggleTheme = () => {
-    setDarkMode(prev => !prev);
+    setDarkMode((prev) => !prev);
   };
 
   return (
-    <ThemeContext.Provider value={{ darkMode, toggleTheme }}>
+    <ThemeContext.Provider
+      value={{ darkMode, toggleTheme }}
+    >
       {children}
     </ThemeContext.Provider>
   );

@@ -5,6 +5,7 @@ export default function Card({
   children,
   className = "",
   hover = true,
+  darkOnly = false,
 }) {
   return (
     <motion.div
@@ -12,9 +13,11 @@ export default function Card({
       transition={{ duration: 0.2 }}
       className={cn(
         "rounded-3xl",
-        "border-slate-200 dark:border-white/5",
-        "bg-white dark:bg-[#171821]",
-        "shadow-md dark:shadow-lg",
+
+        darkOnly
+          ? "bg-[#171821] border-white/5 shadow-lg"
+          : "bg-white dark:bg-[#171821] border-slate-200 dark:border-white/5 shadow-md dark:shadow-lg",
+
         "p-6",
         className
       )}
