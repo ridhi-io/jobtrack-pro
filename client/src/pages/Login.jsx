@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import axios from "axios";
 import {
   BriefcaseBusiness,
   Eye,
   EyeOff,
 } from "lucide-react";
+
+import api from "../services/api";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -33,12 +34,14 @@ export default function Login() {
     try {
       setLoading(true);
 
-      const { data } = await axios.post(
-        https://jobtrack-pro-7apy.onrender.com/api/auth/login,
-        formData,
-        {
-          withCredentials: true,
-        }
+      const { data } = await api.post(
+        "/auth/login",
+        formData
+      );
+
+      localStorage.setItem(
+        "token",
+        data.token
       );
 
       localStorage.setItem(
@@ -59,24 +62,18 @@ export default function Login() {
 
   return (
     <div className="min-h-screen bg-[#0F1117] flex items-center justify-center px-6">
-
       <motion.div
         initial={{ opacity: 0, y: 25 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.45 }}
         className="w-full max-w-md rounded-3xl border border-white/5 bg-[#171821] p-8 shadow-2xl"
       >
-        {/* Logo */}
-
         <div className="flex flex-col items-center mb-8">
-
           <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-violet-500 to-purple-700 flex items-center justify-center mb-5">
-
             <BriefcaseBusiness
               size={30}
               className="text-white"
             />
-
           </div>
 
           <h1 className="text-3xl font-bold text-white">
@@ -86,20 +83,13 @@ export default function Login() {
           <p className="mt-2 text-gray-400">
             Sign in to continue to JobTrack
           </p>
-
         </div>
-
-        {/* Form */}
 
         <form
           onSubmit={handleSubmit}
           className="space-y-5"
         >
-
-          {/* Email */}
-
           <div>
-
             <label className="block mb-2 text-sm font-medium text-gray-300">
               Email Address
             </label>
@@ -114,19 +104,14 @@ export default function Login() {
               placeholder="you@example.com"
               className="w-full rounded-xl border border-white/10 bg-[#111218] px-4 py-3 text-white placeholder:text-gray-500 outline-none transition focus:border-violet-500"
             />
-
           </div>
 
-          {/* Password */}
-
           <div>
-
             <label className="block mb-2 text-sm font-medium text-gray-300">
               Password
             </label>
 
             <div className="relative">
-
               <input
                 type={
                   showPassword
@@ -145,9 +130,7 @@ export default function Login() {
               <button
                 type="button"
                 onClick={() =>
-                  setShowPassword(
-                    !showPassword
-                  )
+                  setShowPassword(!showPassword)
                 }
                 className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white transition"
               >
@@ -157,12 +140,8 @@ export default function Login() {
                   <Eye size={20} />
                 )}
               </button>
-
             </div>
-
           </div>
-
-          {/* Login Button */}
 
           <button
             type="submit"
@@ -173,26 +152,18 @@ export default function Login() {
               ? "Signing In..."
               : "Sign In"}
           </button>
-
         </form>
 
-        {/* Register */}
-
         <p className="mt-6 text-center text-gray-400">
-
           Don't have an account?{" "}
-
           <Link
             to="/register"
             className="font-semibold text-violet-400 hover:text-violet-300 transition"
           >
             Create Account
           </Link>
-
         </p>
-
       </motion.div>
-
     </div>
   );
 }
