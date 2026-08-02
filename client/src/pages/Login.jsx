@@ -34,7 +34,7 @@ export default function Login() {
       setLoading(true);
 
       const { data } = await axios.post(
-        "http://https://jobtrack-pro-7apy.onrender.com//api/auth/login",
+        https://jobtrack-pro-7apy.onrender.com/api/auth/login,
         formData,
         {
           withCredentials: true,

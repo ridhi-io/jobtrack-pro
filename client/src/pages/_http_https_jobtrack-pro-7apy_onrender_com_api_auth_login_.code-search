@@ -1,0 +1,13 @@
+# Query: "http://https://jobtrack-pro-7apy.onrender.com//api/auth/login"
+# ContextLines: 1
+
+1 result - 1 file
+
+client\src\pages\Login.jsx:
+  36        const { data } = await axios.post(
+  "https://jobtrack-pro-7apy.onrender.com/api/auth/login",
+  formData,
+  {
+    withCredentials: true,
+  }
+);
