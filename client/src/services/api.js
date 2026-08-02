@@ -1,7 +1,8 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "http://https://jobtrack-pro-7apy.onrender.com//api",
+  baseURL: "https://jobtrack-pro-7apy.onrender.com/api",
+  withCredentials: true,
 });
 
 API.interceptors.request.use((req) => {
